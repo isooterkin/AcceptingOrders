@@ -34,7 +34,7 @@ namespace AcceptingOrders
                     pattern: "{controller}/{action}/{id?}",
                     defaults: new
                     {
-                        controller = "Home",
+                        controller = "OrderModels",
                         action = "Index"
                     });
             });

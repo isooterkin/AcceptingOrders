@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AcceptingOrders.Models
 {
-    [Display(Name = "Заказ")]   
+    [Display(Name = "Заказ")]
     public class OrderModel
     {
         [Key]
@@ -51,5 +51,15 @@ namespace AcceptingOrders.Models
         [Display(Name = "Адрес получателя")]
         [Required(ErrorMessage = "Укажите адрес получателя.")]
         public string AddresseeAddress { get; set; }
+
+
+
+        [NotMapped]
+        public string AddressSender => $"г. {SenderCity}, {SenderAddress}";
+
+
+
+        [NotMapped]
+        public string AddressAddressee => $"г. {AddresseeCity}, {AddresseeAddress}";
     }
 }

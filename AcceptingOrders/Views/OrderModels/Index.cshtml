@@ -1,0 +1,14 @@
+﻿@model IEnumerable<AcceptingOrders.Models.OrderModel>
+
+@{
+    ViewData["Title"] = "Список заказов";
+}
+
+<h1 class="text-center">Список заказов</h1>
+
+<div class="container p-0">
+    @foreach (var order in Model)
+    {
+        <vc:order order="@order"/>  
+    }
+</div>

@@ -10,10 +10,10 @@ namespace AcceptingOrders.Attributes.Validation
         {
             DateTime? dateTime = (DateTime?)value;
             
-            if (dateTime.HasValue && DateTime.Now.AddDays(1).CompareTo(dateTime) > 0 && DateTime.Now.AddYears(1).CompareTo(value) < 0)
+            if (dateTime.HasValue && DateTime.Now.AddDays(1).CompareTo(dateTime) < 0 && DateTime.Now.AddYears(1).CompareTo(value) > 0)
                 return ValidationResult.Success;
 
-            return new ValidationResult("Date must be within the last six years!");
+            return new ValidationResult("Дата должна быть от текущего дня в течении года.");
         }
     }
 }

@@ -5,8 +5,6 @@ namespace AcceptingOrders.HostBuilders
 {
     public static class DatabaseServices
     {
-
-
         public static IHostBuilder AddDatabaseServices(this IHostBuilder host, string connectionServer)
         {
             return host.ConfigureServices((context, serviceCollection) =>
@@ -19,6 +17,8 @@ namespace AcceptingOrders.HostBuilders
                 }
 
                 serviceCollection.AddDbContextPool<AcceptingOrdersDbContext>(configureDbContext);
+
+                AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             });
         }
     }

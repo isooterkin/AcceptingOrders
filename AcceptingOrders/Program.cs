@@ -10,6 +10,7 @@ namespace AcceptingOrders
             .AddDatabaseServices("PGSQL")
             .AddOthersServices()
             .Build()
+            .AddDatabaseInitialization()
             .Run();
     }
 }

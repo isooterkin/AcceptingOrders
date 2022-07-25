@@ -30,36 +30,38 @@ namespace AcceptingOrders.Models
 
 
 
-        [Display(Name = "Город отправителя")]
-        [Required(ErrorMessage = "Укажите город отправителя.")]
-        public string SenderCity { get; set; }
+        //[Display(Name = "Город отправителя")]
+        //[Required(ErrorMessage = "Укажите город отправителя.")]
+        //public string SenderCity { get; set; }
 
 
 
+        //[Address]
         [Display(Name = "Адрес отправителя")]
         [Required(ErrorMessage = "Укажите адрес отправителя.")]
         public string SenderAddress { get; set; }
 
 
 
-        [Display(Name = "Город получателя")]
-        [Required(ErrorMessage = "Укажите город получателя.")]
-        public string AddresseeCity { get; set; }
+        //[Display(Name = "Город получателя")]
+        //[Required(ErrorMessage = "Укажите город получателя.")]
+        //public string AddresseeCity { get; set; }
 
 
 
+        //[Address]
         [Display(Name = "Адрес получателя")]
         [Required(ErrorMessage = "Укажите адрес получателя.")]
         public string AddresseeAddress { get; set; }
 
 
 
-        [NotMapped]
-        public string AddressSender => $"г. {SenderCity}, {SenderAddress}";
+        //[NotMapped]
+        //public string AddressSender => $"г. {SenderCity}, {SenderAddress}";
 
 
 
-        [NotMapped]
-        public string AddressAddressee => $"г. {AddresseeCity}, {AddresseeAddress}";
+        //[NotMapped]
+        //public string AddressAddressee => $"г. {AddresseeCity}, {AddresseeAddress}";
     }
 }

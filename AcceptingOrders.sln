@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptingOrders", "AcceptingOrders\AcceptingOrders.csproj", "{724B97C3-CFB6-4AC3-AF9F-39473E1259FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{724B97C3-CFB6-4AC3-AF9F-39473E1259FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724B97C3-CFB6-4AC3-AF9F-39473E1259FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724B97C3-CFB6-4AC3-AF9F-39473E1259FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724B97C3-CFB6-4AC3-AF9F-39473E1259FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5B16B840-D945-4023-8B5E-B80C7DE35032}
+	EndGlobalSection
+EndGlobal

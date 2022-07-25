@@ -15,10 +15,5 @@ namespace AcceptingOrders.Data.Context
 
 
         public DbSet<OrderModel> Order { get; set; }
-
-
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-            => modelBuilder.Entity<OrderModel>().OwnsOne(typeof(AddressModel), nameof(AddressModel));
     }
 }

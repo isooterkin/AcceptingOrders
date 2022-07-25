@@ -30,8 +30,26 @@ namespace AcceptingOrders.Models
 
 
 
-        [Display(Name = "Адрес")]
-        [Required(ErrorMessage = "Укажите адрес.")]
-        public AddressModel Address { get; set; }
+        [Display(Name = "Город отправителя")]
+        [Required(ErrorMessage = "Укажите город отправителя.")]
+        public string SenderCity { get; set; }
+
+
+
+        [Display(Name = "Адрес отправителя")]
+        [Required(ErrorMessage = "Укажите адрес отправителя.")]
+        public string SenderAddress { get; set; }
+
+
+
+        [Display(Name = "Город получателя")]
+        [Required(ErrorMessage = "Укажите город получателя.")]
+        public string AddresseeCity { get; set; }
+
+
+
+        [Display(Name = "Адрес получателя")]
+        [Required(ErrorMessage = "Укажите адрес получателя.")]
+        public string AddresseeAddress { get; set; }
     }
 }

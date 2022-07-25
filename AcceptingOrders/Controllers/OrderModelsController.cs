@@ -105,12 +105,10 @@ namespace AcceptingOrders.Controllers
 
             var orderModel = await _context.Order.FindAsync(id);
 
-            if (orderModel != null)
-            {
-                _context.Order.Remove(orderModel);
-            }
+            if (orderModel != null) _context.Order.Remove(orderModel);
             
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
     }

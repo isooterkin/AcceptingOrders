@@ -9,7 +9,7 @@ namespace AcceptingOrders.Tools
 
 
 
-        public Address Address;
+        private readonly Address Address;
         public bool IsCorrect = false;
 
 

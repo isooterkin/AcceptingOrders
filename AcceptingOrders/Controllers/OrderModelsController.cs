@@ -4,13 +4,13 @@ using AcceptingOrders.Data.Context;
 using AcceptingOrders.Models;
 using Dadata;
 using Dadata.Model;
+using AcceptingOrders.Tools;
 
 namespace AcceptingOrders.Controllers
 {
     public class OrderModelsController : Controller
     {
         private readonly AcceptingOrdersDbContext _context;
-        private static CleanClient _cleanClient = new("491bad81fdc4febee92a3339f0f8c4917405b0ed", "c2af29002683f8c344a7887c5b60ca0696d3b84b");
 
 
 
@@ -27,41 +27,12 @@ namespace AcceptingOrders.Controllers
 
 
 
-        public OrderModel CheckAddress(OrderModel order)
-        {
-            Address senderAddress    = _cleanClient.Clean<Address>(order.SenderAddress);
-            Address addresseeAddress = _cleanClient.Clean<Address>(order.AddresseeAddress);
-
-            if ((senderAddress.city == null && senderAddress.region == null) || senderAddress.street == null || senderAddress.house == null)
-                ModelState.AddModelError("SenderAddress", "Неверно введен адресс!");
-
-            if ((addresseeAddress.city == null && addresseeAddress.region == null) || addresseeAddress.street == null || addresseeAddress.house == null)
-                ModelState.AddModelError("AddresseeAddress", "Неверно введен адресс!");
-
-            if (ModelState.ErrorCount == 0)
-            {
-                order.SenderAddress = senderAddress.city != null ? $"г. {senderAddress.city}, ул. {senderAddress.street}, д. {senderAddress.house}"
-                    : $"г. {senderAddress.region}, ул. {senderAddress.street}, д. {senderAddress.house}";
-                order.AddresseeAddress = addresseeAddress.city != null ? $"г. {addresseeAddress.city}, ул. {addresseeAddress.street}, д. {addresseeAddress.house}"
-                    : $"г. {addresseeAddress.region}, ул. {addresseeAddress.street}, д. {addresseeAddress.house}";
-            }
-
-            return order;
-        }
-
-
-
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateConfirmed([Bind("Id,Weight,Date,SenderAddress,AddresseeAddress")] OrderModel order)
+        public async Task<IActionResult> CreateConfirmed([FromForm] OrderModel order)
         {
             if (ModelState.IsValid)
             {
-                CheckAddress(order);
-                
-                if (ModelState.ErrorCount != 0)
-                    return View(order);
-
                 _context.Add(order);
 
                 await _context.SaveChangesAsync();
@@ -89,17 +60,12 @@ namespace AcceptingOrders.Controllers
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditConfirmed(int id, [Bind("Id,Weight,Date,SenderAddress,AddresseeAddress")] OrderModel order)
+        public async Task<IActionResult> EditConfirmed(int id, OrderModel order)
         {
             if (id != order.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
-                CheckAddress(order);
-
-                if (ModelState.ErrorCount != 0)
-                    return View(order);
-
                 try
                 {
                     _context.Update(order);

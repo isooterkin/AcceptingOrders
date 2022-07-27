@@ -1,4 +1,5 @@
 ﻿using AcceptingOrders.Attributes.Validation;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,49 +20,31 @@ namespace AcceptingOrders.Models
         [Display(Name = "Вес груза (грамм)")]
         [Required(ErrorMessage = "Укажите вес груза (в граммах).")]
         [Range(1, 100000, ErrorMessage = "Недопустимый вес груза")]
+        [BindRequired]
         public int Weight { get; set; }
 
 
 
         [Display(Name = "Дата забора груза")]
         [Required(ErrorMessage = "Укажите дату забора груза.")]
+        [BindRequired]
         [Date]
         public DateTime Date { get; set; }
 
 
 
-        //[Display(Name = "Город отправителя")]
-        //[Required(ErrorMessage = "Укажите город отправителя.")]
-        //public string SenderCity { get; set; }
-
-
-
-        //[Address]
+        [Address]
         [Display(Name = "Адрес отправителя")]
         [Required(ErrorMessage = "Укажите адрес отправителя.")]
+        [BindRequired]
         public string SenderAddress { get; set; }
 
 
 
-        //[Display(Name = "Город получателя")]
-        //[Required(ErrorMessage = "Укажите город получателя.")]
-        //public string AddresseeCity { get; set; }
-
-
-
-        //[Address]
+        [Address]
         [Display(Name = "Адрес получателя")]
         [Required(ErrorMessage = "Укажите адрес получателя.")]
+        [BindRequired]
         public string AddresseeAddress { get; set; }
-
-
-
-        //[NotMapped]
-        //public string AddressSender => $"г. {SenderCity}, {SenderAddress}";
-
-
-
-        //[NotMapped]
-        //public string AddressAddressee => $"г. {AddresseeCity}, {AddresseeAddress}";
     }
 }

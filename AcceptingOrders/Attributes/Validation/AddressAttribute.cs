@@ -1,5 +1,4 @@
-﻿using Dadata;
-using Dadata.Model;
+﻿using AcceptingOrders.Tools;
 using System.ComponentModel.DataAnnotations;
 
 #pragma warning disable CS8603
@@ -8,27 +7,29 @@ namespace AcceptingOrders.Attributes.Validation
 {
     public class AddressAttribute : ValidationAttribute
     {
-        private static CleanClient _cleanClient = new("491bad81fdc4febee92a3339f0f8c4917405b0ed", "c2af29002683f8c344a7887c5b60ca0696d3b84b");
-
-
-
         protected override ValidationResult IsValid(object? value, ValidationContext validationContext)
         {
-            string? addressString = (string?)value;
+            string? addressForVerification = (string?)value;
 
-            if (addressString == null)
-                return new ValidationResult("Необходимо вести адрес.");
+            if (addressForVerification == null || addressForVerification == string.Empty)
+                return new ValidationResult("Неверно введен адресс!");
 
-            Address address = _cleanClient.Clean<Address>(addressString);
+            AddressValidation addressValidation = new(addressForVerification);
 
-            if (address.city == null)
-                return new ValidationResult("Не удалось определить город.");
-
-            if (address.street == null)
-                return new ValidationResult("Не удалось распознать улицу.");
-
-            if (address.house == null)
-                return new ValidationResult("Не удалось определить дом.");
+            if (addressValidation.IsCorrect)
+            {
+                try
+                {
+                    validationContext.ObjectType
+                        .GetProperty(validationContext.MemberName!)?
+                        .SetValue(validationContext.ObjectInstance, addressValidation.GetCorrectAddress(), null);
+                }
+                catch (Exception)
+                {
+                    return new ValidationResult("Не удалось изменить адрес.");
+                }
+            }
+            else return new ValidationResult("Не удалось определить адрес.");
 
             return ValidationResult.Success;
         }

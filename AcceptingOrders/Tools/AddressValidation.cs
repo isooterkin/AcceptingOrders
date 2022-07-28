@@ -32,7 +32,7 @@ namespace AcceptingOrders.Tools
 
 
 
-        public string GetCorrectAddress()
+        public string CorrectAddress
             => Address.city != null ? $"г. {Address.city}, ул. {Address.street}, д. {Address.house}" 
             : $"г. {Address.region}, ул. {Address.street}, д. {Address.house}";
     }

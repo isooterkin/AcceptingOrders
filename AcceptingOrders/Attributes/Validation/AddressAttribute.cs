@@ -22,7 +22,7 @@ namespace AcceptingOrders.Attributes.Validation
                 {
                     validationContext.ObjectType
                         .GetProperty(validationContext.MemberName!)?
-                        .SetValue(validationContext.ObjectInstance, addressValidation.GetCorrectAddress(), null);
+                        .SetValue(validationContext.ObjectInstance, addressValidation.CorrectAddress, null);
                 }
                 catch (Exception)
                 {
